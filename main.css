@@ -1,0 +1,311 @@
+html {
+    background: #e6e9e9;
+    background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    color: #545454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 2em 2em 4em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.row {
+  display: flex; /* equal height of the children */
+}
+
+.column {
+  flex: 1; /* additionally, equal width */
+}
+
+.switchlabel
+{
+    vertical-align:middle;
+    font-weight: bold;
+}
+.switch
+{
+    vertical-align:middle; 
+}
+
+
+.ColorPane:hover {
+    animation-duration: 0.5s;
+    animation-name: blink;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink{
+    from{
+        /*filter:brightness(100%);*/
+        filter:invert(0);
+    }
+    to
+    {
+        /*filter:brightness(80%);*/
+        /*filter:invert(1);*/
+        /*fill:#FFFFFF;*/
+        filter:invert(0.2);
+    }
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+	.Contour{fill:none;stroke:#000000;pointer-events: none;}
+	.ColorPane{fill:#FFA534;stroke:#000000;}
+	.ColorPane_DarkMetal{fill:#40403C;stroke:#000000;pointer-events: none;}
+	.ColorPane_LightMetal{fill:#CBCCBF;stroke:#000000;pointer-events: none;}
+	.ColorPane_Red{fill:#DA1200;stroke:#000000;pointer-events: none;}
+	.ColorPane_Black{fill:#1D1D1B;stroke:#000000;pointer-events: none;}
+	.ColorPane_LightBlue{fill:#BEEFFF;stroke:#000000;pointer-events: none;}
+    .ShadowPane{opacity:0.2;fill:none;pointer-events: none;}
+    
+
+    /*We do this on load*/
+    /*#Upper_ColorPane{fill:#FFA534;}
+    #Fidlock_ColorPane{fill:#a8f3ff;}
+    #Heatsink_ColorPane{fill:#FFA534;}
+    #Base_ColorPane{fill:#40403C;}
+    #Middle_ColorPane{fill:#a8f3ff;}
+    #ScrewCover_ColorPane{fill:#40403C;}
+    #MagRelease_ColorPane{fill:#FFA534;}
+    #Bottom_ColorPane{fill:#40403C;}
+    #Joystick_ColorPane{fill:#BEEFFF;}
+    #Trigger_ColorPane{fill:#FFA534;}
+    #TriggerGuard_ColorPane{fill:#40403C;}
+    #Grip_ColorPane{fill:#40403C;}
+    #BatteryDoor_ColorPane{fill:#a8f3ff;}
+    #BatteryDoorKnob_ColorPane{fill:#FFA534;}*/
+    
+
+    #ShadowPane_Default{}
+    #ShadowPane_Fidlock{}
+    .Fidlock{}
+    
+    
+	.st1{fill:#BEBEBE;}
+	.st2{fill:#474747;}
+	.st3{fill:#ACACAC;}
+	.st4{fill:#8B8B8B;}
+	.st5{fill:#A4A4A4;}
+	.st6{fill:#1D1D1D;}
+	.st7{fill:#5A5A5A;}
+	.st8{fill:#424242;}
+	.st9{fill:#3F3F3F;}
+	.st10{fill:#A8A8A8;}
+	.st11{fill:#C0C0C0;}
+	.st12{fill:#5D5D5D;}
+	.st13{fill:#2F2F2F;}
+	.st14{fill:#AFAFAF;}
+	.st15{fill:#505050;}
+	.st16{fill:#B4B4B4;}
+	.st17{fill:#3C3C3C;}
+	.st18{fill:#494949;}
+	.st19{fill:#3B3B3B;}
+	.st20{fill:#BFBFBF;}
+	.st21{fill:#444444;}
+	.st22{fill:#5B5B5B;}
+	.st23{fill:#383838;}
+	.st24{fill:#4A4A4A;}
+	.st25{fill:#353535;}
+	.st26{fill:#989898;}
+	.st27{fill:#CACACA;}
+	.st28{fill:#646464;}
+	.st29{fill:#979797;}
+	.st30{fill:#484848;}
+	.st31{fill:#525252;}
+	.st32{fill:#2E2E2E;}
+	.st33{fill:#313131;}
+	.st34{fill:#414141;}
+	.st35{fill:#808080;}
+	.st36{fill:#454545;}
+	.st37{fill:#B7B7B7;}
+	.st38{fill:#C6C6C6;}
+	.st39{fill:#464646;}
+	.st40{fill:#434343;}
+	.st41{fill:#515151;}
+	.st42{fill:#4C4C4C;}
+	.st43{fill:#4B4B4B;}
+	.st44{fill:#4E4E4E;}
+	.st45{fill:#545454;}
+	.st46{fill:#404040;}
+	.st47{fill:#CECECE;}
+	.st48{fill:#B8B8B8;}
+	.st49{fill:#C5C5C5;}
+	.st50{fill:#D1D1D1;}
+	.st51{fill:#BABABA;}
+	.st52{fill:#D0D0D0;}
+	.st53{fill:#CCCCCC;}
+	.st54{fill:#9E9E9E;}
+	.st55{fill:#BDBDBD;}
+	.st56{fill:#858585;}
+	.st57{fill:#7D7D7D;}
+	.st58{fill:#3A3A3A;}
+	.st59{fill:#363636;}
+	.st60{fill:#292929;}
+	.st61{fill:#CFCFCF;}
+	.st62{fill:#969696;}
+	.st63{fill:#C4C4C4;}
+	.st64{fill:#CBCBCB;}
+	.st65{fill:#C7C7C7;}
+	.st66{fill:#818181;}
+	.st67{fill:#8F8F8F;}
+	.st68{fill:#929292;}
+	.st69{fill:#898989;}
+	.st70{fill:#737373;}
+	.st71{fill:#747474;}
+	.st72{fill:#767676;}
+	.st73{fill:#888888;}
+	.st74{fill:#323232;}
+	.st75{fill:#B1B1B1;}
+	.st76{fill:#C8C8C8;}
+	.st77{fill:#AAAAAA;}
+	.st78{fill:#C9C9C9;}
+	.st79{fill:#696969;}
+	.st80{fill:#C2C2C2;}
+	.st81{fill:#373737;}
+	.st82{fill:#B2B2B2;}
+	.st83{fill:#CDCDCD;}
+	.st84{fill:#6B6B6B;}
+	.st85{fill:#828282;}
+	.st86{fill:#0B0B0B;}
+	.st87{fill:#AEAEAE;}
+	.st88{fill:#ABABAB;}
+	.st89{fill:#8C8C8C;}
+	.st90{fill:#C1C1C1;}
+	.st91{fill:#9A9A9A;}
+	.st92{fill:#A0A0A0;}
+	.st93{fill:#343434;}
+	.st94{fill:#5F5F5F;}
+	.st95{fill:#999999;}
+	.st96{fill:#616161;}
+	.st97{fill:#4D4D4D;}
+	.st98{fill:#3E3E3E;}
+	.st99{fill:#727272;}
+	.st100{fill:#ADADAD;}
+	.st101{fill:#A1A1A1;}
+	.st102{fill:#2D2D2D;}
+	.st103{fill:#8E8E8E;}
+	.st104{fill:#9C9C9C;}
+	.st105{fill:#6F6F6F;}
+	.st106{fill:#9B9B9B;}
+	.st107{fill:#202020;}
+	.st108{fill:#101010;}
+	.st109{fill:#656565;}
+	.st110{fill:#868686;}
+	.st111{fill:#2C2C2C;}
+	.st112{fill:#393939;}
+	.st113{fill:#3D3D3D;}
+	.st114{fill:#919191;}
+	.st115{fill:#939393;}
+	.st116{fill:#A6A6A6;}
+	.st117{fill:#010101;}
+	.st118{fill:#8D8D8D;}
+	.st119{fill:#A7A7A7;}
+	.st120{fill:#5E5E5E;}
+	.st121{fill:#B3B3B3;}
+	.st122{fill:#B9B9B9;}
+	.st123{fill:#B0B0B0;}
+	.st124{fill:#272727;}
+	.st125{fill:#BCBCBC;}
+	.st126{fill:#BBBBBB;}
+	.st127{fill:#6A6A6A;}
+	.st128{fill:#1A1A1A;}
+	.st129{fill:#C3C3C3;}
+	.st130{fill:#7F7F7F;}
+	.st131{fill:#777777;}
+	.st132{fill:#838383;}
+	.st133{fill:#686868;}
+	.st134{fill:#A9A9A9;}
+	.st135{fill:#232323;}
+	.st136{fill:#333333;}
+	.st137{fill:#9D9D9D;}
+	.st138{fill:#0A0A0A;}
+	.st139{fill:#666666;}
+	.st140{fill:#B6B6B6;}
+	.st141{fill:#606060;}
+	.st142{fill:#4F4F4F;}
+	.st143{fill:#303030;}
+	.st144{fill:#676767;}
+	.st145{fill:#7E7E7E;}
+	.st146{fill:#949494;}
+	.st147{fill:#626262;}
+	.st148{fill:#636363;}
+	.st149{fill:#0D0D0D;}
+	.st150{fill:#535353;}
+	.st151{fill:#B5B5B5;}
+	.st152{fill:#0F0F0F;}
+	.st153{fill:#0E0E0E;}

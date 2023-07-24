@@ -20,12 +20,63 @@ ul {
   list-style-type: none;
 }
 
-.row {
-  display: flex; /* equal height of the children */
+#wrapper {
+    /*margin-top: -300px;*/
+    position:absolute;
+    bottom:0;
+    
+    /*(border: 1px solid blue;*/
 }
 
-.column {
-  flex: 1; /* additionally, equal width */
+#div1 {
+    vertical-align:middle;
+    display: inline-block;
+    /*border: 1px solid red;*/
+}
+
+#div2 {
+    vertical-align:middle;
+    display: inline-block;
+    /*border: 1px solid green;*/
+}
+
+#div3 {
+    vertical-align:middle;
+    display: inline-block;
+    /*border: 1px solid blue;*/
+}
+
+#titlediv
+{
+    position:absolute;
+    top:0;
+    width:100%;
+    text-align: center;
+    /*border: 1px solid green; */
+}
+
+#title
+{
+    font-family: "Heebo";
+    font-weight:900;
+    font-size: 40pt;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+
+
+#maindiv{
+    /*border: 1px solid red;*/
+    position:relative;
+}
+#svg {
+}
+
+#PewPew{
+    pointer-events:all;
 }
 
 .switchlabel

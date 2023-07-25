@@ -14,18 +14,28 @@ body {
     margin: 0 auto;
     max-width: 1000px;
     padding: 2em 2em 4em;
+    
+    position: relative;
+    width: 100%;
+    min-width: 880px;
 }
 
 ul {
   list-style-type: none;
 }
 
+#buildsavebutton{
+    width:100%;
+    height:30px;
+    font-weight: bold;
+}
+
 #wrapper {
     /*margin-top: -300px;*/
     position:absolute;
     bottom:0;
-    
-    /*(border: 1px solid blue;*/
+    /*border: 1px solid blue;*/
+    margin-bottom: 130px;
 }
 
 #div1 {
@@ -60,6 +70,7 @@ ul {
     font-family: "Heebo";
     font-weight:900;
     font-size: 40pt;
+    /*border: 1px solid green;*/
 }
 
 [contenteditable] {
@@ -73,6 +84,11 @@ ul {
     position:relative;
 }
 #svg {
+    /*border: 1px solid green;*/
+}
+
+#PewPewSVG{
+    pointer-events:none;
 }
 
 #PewPew{

@@ -16,11 +16,11 @@
 
         
         <div id="titlediv">
-            <h1 id="title" contentEditable="true" onkeypress="checkLength(event)">The PewPew Coloring Book</h1>
+            <h1 id="title" contentEditable="true" onkeypress="">The PewPew Coloring Book</h1>
         </div>
         
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1440 1440" style="enable-background:new 0 0 1440 1440;" xml:space="preserve">
-            <g id="PewPew">
+        <svg id="PewPewSVG" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1440 1440" style="enable-background:new 0 0 1440 1440;" xml:space="preserve">
+            <g id="PewPew" >
                 <g id="Grip">
                     <path id="Grip_ColorPane" class="ColorPane" d="M839.1,561.5c1.3,78.6,1.4,163.2,13.3,192.8l1.8,10l1.8,16.8
 			c0.3,4.1,1.5,7.5,3.9,9.8c6.7,5.3,12.2,10.4,16,15.2l4.8,10c11.9,25.1,24,50.5,23.8,61.1l-1.5,20.4c-0.7,5.1,0,10.4,2.3,16.1
@@ -3469,8 +3469,6 @@
             </g>
         </svg>
 
-
-
         <div class="row" id="wrapper">
             <div class="column" id="div1">
                 <div class="colors">
@@ -3494,6 +3492,7 @@
                         <input type="color" class="col" id="4" value="#355c7d">
                         <input type="text" id="4txt" size="30">
                     </div>
+                    <button type="button" id="buildsavebutton" onclick="saveurltoclipboard(this)">Save and share build as a link!</button>
                 </div>
             </div>
 
@@ -3528,19 +3527,28 @@
 
                     <li>
                         <label class="switch">
-                            <input id="heatsinkColorToggle" type="checkbox" onchange="heatsinkColorToggle(this)">
+                            <input id="heatsinkToggle" type="checkbox" onchange="toggleHeatsink(this)">
                             <span class="slider round"></span>
                         </label>
-                        <label class="switchlabel">Orange Cage</label>
+                        <label class="switchlabel">Heatsink</label>
                     </li>
 
                     <li>
                         <label class="switch">
-                            <input id="holoToggle" type="checkbox" onchange="holoToggle(this)">
+                            <input id="holoToggle" type="checkbox" onchange="toggleHOLO(this)">
                             <span class="slider round"></span>
                         </label>
                         <label class="switchlabel">HOLO</label>
                     </li>
+                    
+                    <li>
+                        <label class="switch">
+                            <input id="leftieToggle" type="checkbox" onchange="toggleLeftie(this)">
+                            <span class="slider round"></span>
+                        </label>
+                        <label class="switchlabel">Leftie</label>
+                    </li>
+                    
 
                 </ul>
             </div>

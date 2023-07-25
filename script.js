@@ -25,16 +25,16 @@ window.onload = function () {
             var configDeserialized = JSON.parse(atob(urlConfig));
             //console.log(configDeserialized);
             loadConfig(urlBuild, configDeserialized);
-        } catch(err) {
+        } catch (err) {
             console.log("Error while loading build from URL!");
             console.log(err);
             loadDefaults();
         }
         console.log("Build '" + urlBuild + "' loaded!")
         window.history.pushState({}, document.title, "");
-        
+
     } else {
-            loadDefaults();
+        loadDefaults();
     }
 
     //Set onclick functions to colorpanes
@@ -165,10 +165,10 @@ function loadConfig(buildname, config) {
     /*document.getElementById("ShadowPane_Default").style.display = "none";*/
     document.getElementById("fidlockToggle").checked = extras[0];
     toggleFidlock(document.getElementById("fidlockToggle"));
-    
+
     document.getElementById("heatsinkToggle").checked = extras[1];
     toggleHeatsink(document.getElementById("heatsinkToggle"));
-    
+
     document.getElementById("holoToggle").checked = extras[2];
     toggleHOLO(document.getElementById("holoToggle"));
 
@@ -179,16 +179,27 @@ function loadConfig(buildname, config) {
 
 let lasttext = "";
 let lastColor = "";
+
 function saveurltoclipboard(element) {
-    if(element.innerHTML == 'Copied to clipboard!')
-    {
+    if (element.innerHTML == 'Copied to clipboard!') {
         return
     }
-    
+
+//    if (document.getElementById("title").textContent == "The PewPew Coloring Book") {
+//        document.getElementById("title").textContent = prompt("Give your build a name:", document.getElementById("title").textContent);
+//        document.getElementById("title").style.outline = "2px solid grey"
+//        setTimeout(function () {
+//                document.getElementById("title").style.outline = "0px solid transparent"
+//        }.bind(this), 1000);
+//
+    //    return;
+    //}
+
+
     console.log("Preparing configuration!")
     url = getConfigURL();
     console.log(url);
-    
+
     let success = "false";
     navigator.clipboard
         .writeText(url)
@@ -198,28 +209,23 @@ function saveurltoclipboard(element) {
         .catch(() => {
             alert("Something went wrong!");
         });
-    
-    if(success)
-        {
-            var last = element.innerHTML;
-            var lastColor = element.style.backgroundColor;
-        
-            element.innerHTML = 'Copied to clipboard!';
-            element.style.backgroundColor = "lightGreen";
-            setTimeout(function () {
-                element.innerHTML = last;
-                element.style.backgroundColor = lastColor;
-            }.bind(this), 2000);
-        }
+
+    if (success) {
+        var last = element.innerHTML;
+        var lastColor = element.style.backgroundColor;
+
+        element.innerHTML = 'Copied to clipboard!';
+        element.style.backgroundColor = "lightGreen";
+        setTimeout(function () {
+            element.innerHTML = last;
+            element.style.backgroundColor = lastColor;
+        }.bind(this), 2000);
+    }
 }
 
 function getConfigURL() {
     var buildname = document.getElementById("title").textContent;
-    if(buildname == "The PewPew Coloring Book")
-    {
-            buildname = prompt("Enter a name for the build:", buildname);
-    }
-    
+
     //Get all colors
     var colors = [];
     var swatches = document.getElementsByClassName("col");
@@ -234,10 +240,9 @@ function getConfigURL() {
     for (var i = 0; i < colorPanes.length; i++) {
         var colorPane = colorPanes[i];
         /*console.log(colorPane.id);*/
-        if(colorPane.id == "Heatsink_ColorPane")
-            {
-                continue;
-            }
+        if (colorPane.id == "Heatsink_ColorPane") {
+            continue;
+        }
         parts[i] = [colorPane.style.coloredBy.id, colorPane.id];
     }
 

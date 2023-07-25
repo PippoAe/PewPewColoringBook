@@ -189,9 +189,18 @@ function saveurltoclipboard(element) {
     url = getConfigURL();
     console.log(url);
     
+    let success = "false";
     navigator.clipboard
         .writeText(url)
-        .then(() => {            
+        .then(() => {
+            success = "true";
+        })
+        .catch(() => {
+            alert("Something went wrong!");
+        });
+    
+    if(success)
+        {
             var last = element.innerHTML;
             var lastColor = element.style.backgroundColor;
         
@@ -201,10 +210,7 @@ function saveurltoclipboard(element) {
                 element.innerHTML = last;
                 element.style.backgroundColor = lastColor;
             }.bind(this), 2000);
-        })
-        .catch(() => {
-            alert("Something went wrong!");
-        });
+        }
 }
 
 function getConfigURL() {

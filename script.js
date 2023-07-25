@@ -31,7 +31,7 @@ window.onload = function () {
             loadDefaults();
         }
         console.log("Build '" + urlBuild + "' loaded!")
-        window.history.pushState({}, document.title, "/index.html");
+        window.history.pushState({}, document.title, "");
         
     } else {
             loadDefaults();

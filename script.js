@@ -36,16 +36,26 @@ window.onload = function () {
     } else {
         loadDefaults();
     }
+    
 
-    //Set onclick functions to colorpanes
+    
     var colorPanes = document.getElementsByClassName('ColorPane');
     for (var i = 0; i < colorPanes.length; i++) {
         var colorPane = colorPanes[i];
         /*console.log(colorPane.id);*/
         /*colorPane.addEventListener("click", colorPaneClicked(colorPane));*/
-        colorPane.onclick = function () {
+        colorPane.onclick = function () { //Set onclick functions to colorpanes
             colorPaneClicked(this);
         }
+        
+        colorPane.onmousemove = function (){ //Set onmousemove
+            showTooltip(this);
+        }
+        
+        colorPane.onmouseout = function (){ //Set onmousemove
+            hideTooltip();
+        }
+        
         //colorPane.setAttribute("coloredBy", "");
     }
 
@@ -239,7 +249,7 @@ function getConfigURL() {
     var colorPanes = document.getElementsByClassName("ColorPane");
     for (var i = 0; i < colorPanes.length; i++) {
         var colorPane = colorPanes[i];
-        /*console.log(colorPane.id);*/
+        console.log(colorPane.id);
         if (colorPane.id == "Heatsink_ColorPane") {
             continue;
         }
@@ -337,7 +347,28 @@ function toggleLeftie(element) {
     }
 }
 
+let mouseX;
+let mouseY;
+$(document).mousemove( function(e) {
+   // mouse coordinates
+   var offset = $('body').offset();
+   mouseX = e.pageX - offset.left; 
+   mouseY = e.pageY - offset.top;
+});  
 
+function showTooltip(element) {
+  let tooltip = document.getElementById("tooltip");
+  tooltip.innerHTML = element.id.replace("_ColorPane","");
+  tooltip.style.display = "block";
+
+  tooltip.style.top = mouseY + 15 + "px";
+  tooltip.style.left = mouseX + 15 + "px";
+}
+
+function hideTooltip() {
+  var tooltip = document.getElementById("tooltip");
+  tooltip.style.display = "none";
+}
 
 let maxChars = 20;
 let currentChars = 0;

@@ -24,6 +24,16 @@ ul {
   list-style-type: none;
 }
 
+#tooltip {
+  position: absolute;
+  background: cornsilk;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  z-index: 2147483647;
+}
+
 #buildsavebutton{
     width:100%;
     height:30px;

@@ -12,7 +12,13 @@ $(document).ready(function () {
     
     //Setup reoccuring update routine (2 second interval)
     function update() {
-        updateWithBuildInfo();
+        try{
+            updateWithBuildInfo(); 
+        }        
+        catch
+            {
+             //This crashes on first call (no colors loaded yet)
+            }
         setTimeout(update, 2000);
     }
     update();
@@ -44,7 +50,7 @@ window.onload = function () {
             loadDefaults();
         }
         console.log("Build '" + urlBuild + "' loaded!")
-        lastConfigURL = getConfigURL(); //We do this to prevent an immediate pushstate
+        lastConfigURL = getConfigURL(); //We do this to prevent an immediate new pushstate
     } else {
         loadDefaults();
     }
@@ -332,6 +338,7 @@ function updateWithBuildInfo()
     var newConfigURL = getConfigURL();
     if(lastConfigURL == newConfigURL)
         {
+            //console.log("No config change detected!");
             return;
         }
     lastConfigURL = newConfigURL;

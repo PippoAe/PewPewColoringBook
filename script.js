@@ -354,6 +354,10 @@ $(document).mousemove( function(e) {
    var offset = $('body').offset();
    mouseX = e.pageX - offset.left; 
    mouseY = e.pageY - offset.top;
+    
+    let tooltip = document.getElementById("tooltip");
+    tooltip.style.top = mouseY + 15 + "px";
+    tooltip.style.left = mouseX + 30 + "px";
 });  
 
 function showTooltip(element) {
@@ -361,8 +365,7 @@ function showTooltip(element) {
   tooltip.innerHTML = element.id.replace("_ColorPane","");
   tooltip.style.display = "block";
 
-  tooltip.style.top = mouseY + 15 + "px";
-  tooltip.style.left = mouseX + 15 + "px";
+
 }
 
 function hideTooltip() {

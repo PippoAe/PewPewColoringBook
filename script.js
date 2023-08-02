@@ -155,6 +155,11 @@ function loadConfig(buildname, config) {
 
     for (var i = 0; i < colors.length; i++) {
         var color = colors[i][0];
+        if(!color.includes("#")) //Expand if its the newer, shorter links
+        {
+            color = "#"+color;
+        }
+        
         var text = colors[i][1];
 
         var swatch = document.getElementById(i);
@@ -163,7 +168,12 @@ function loadConfig(buildname, config) {
 
         for (var y = 0; y < parts.length; y++) {
             if (parts[y][0] == i) {
-                var colorPane = document.getElementById(parts[y][1]);
+                var colorPaneName = parts[y][1];
+                if(!colorPaneName.includes("_ColorPane")) //Expand if its the newer shorter links
+                    {
+                        colorPaneName += "_ColorPane";
+                    }
+                var colorPane = document.getElementById(colorPaneName);
                 colorPane.style.fill = swatch.value;
                 colorPane.setAttribute("coloredBy", "");
                 colorPane.style.coloredBy = swatch;
@@ -242,18 +252,23 @@ function getConfigURL() {
     for (var i = 0; i < swatches.length; i++) {
         var swatch = swatches[i];
         var swatchtext = document.getElementById(swatch.id + "txt");
-        colors[i] = [swatch.value, swatchtext.value];
+        colors[i] = [swatch.value.replace("#",""), swatchtext.value];
     }
 
     var parts = [];
     var colorPanes = document.getElementsByClassName("ColorPane");
+    //colorPanes.sort();
+    var colorPanes = [].slice.call(colorPanes);
+    //colorPanes.sort();
     for (var i = 0; i < colorPanes.length; i++) {
         var colorPane = colorPanes[i];
-        console.log(colorPane.id);
+        /*console.log(colorPane);
+        console.log(colorPane.dataset.partindex);*/
         if (colorPane.id == "Heatsink_ColorPane") {
             continue;
         }
-        parts[i] = [colorPane.style.coloredBy.id, colorPane.id];
+        parts[i] = [colorPane.style.coloredBy.id, colorPane.id.replace("_ColorPane","")];
+        //parts[i] = [colorPane.style.coloredBy.id, colorPane.id];
     }
 
     var extras = [];
@@ -274,14 +289,16 @@ function getConfigURL() {
     config.push(colors, parts, extras);
     var configJSONString = JSON.stringify(config);
     //console.log(JSON.stringify(config));
-
+    
     var base64 = btoa(configJSONString);
     //var configDeserialized = JSON.parse(atob(base64));
+        
 
     //console.log(base64);
     //console.log(configDeserialized);
 
     let here = new URL(window.location.href);
+    console.log("Config Bytesize: " + byteSize(base64));
     here.searchParams.set('Build', buildname);
     here.searchParams.set('Config', base64);
     return here.href;
@@ -376,6 +393,8 @@ function hideTooltip() {
 let maxChars = 20;
 let currentChars = 0;
 let once = true;
+
+const byteSize = str => new Blob([str]).size;
 
 function checkLength(event) {
     console.log(currentChars);

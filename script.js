@@ -8,10 +8,23 @@ $(document).ready(function () {
             evt.preventDefault();
         }
     });
+    
+    
+    //Setup reoccuring update routine (2 second interval)
+    function update() {
+        updateWithBuildInfo();
+        setTimeout(update, 2000);
+    }
+    update();
 
 });
 
-//Add ColorPaneClick-Events
+$(window).bind("popstate", function() {
+    window.location = location.href
+  });
+
+
+
 window.onload = function () {
 
     const queryString = window.location.search;
@@ -31,14 +44,10 @@ window.onload = function () {
             loadDefaults();
         }
         console.log("Build '" + urlBuild + "' loaded!")
-        updateTitleWithBuildName();
-        window.history.pushState({}, document.title, "");
-
+        lastConfigURL = getConfigURL(); //We do this to prevent an immediate pushstate
     } else {
         loadDefaults();
     }
-    
-
     
     var colorPanes = document.getElementsByClassName('ColorPane');
     for (var i = 0; i < colorPanes.length; i++) {
@@ -197,53 +206,6 @@ function loadConfig(buildname, config) {
     toggleLeftie(document.getElementById("leftieToggle"));
 }
 
-
-let lasttext = "";
-let lastColor = "";
-
-function saveurltoclipboard(element) {
-    if (element.innerHTML == 'Copied to clipboard!') {
-        return
-    }
-
-//    if (document.getElementById("title").textContent == "The PewPew Coloring Book") {
-//        document.getElementById("title").textContent = prompt("Give your build a name:", document.getElementById("title").textContent);
-//        document.getElementById("title").style.outline = "2px solid grey"
-//        setTimeout(function () {
-//                document.getElementById("title").style.outline = "0px solid transparent"
-//        }.bind(this), 1000);
-//
-    //    return;
-    //}
-
-
-    console.log("Preparing configuration!")
-    url = getConfigURL();
-    console.log(url);
-
-    let success = "false";
-    navigator.clipboard
-        .writeText(url)
-        .then(() => {
-            success = "true";
-        })
-        .catch(() => {
-            alert("Something went wrong!");
-        });
-
-    if (success) {
-        var last = element.innerHTML;
-        var lastColor = element.style.backgroundColor;
-
-        element.innerHTML = 'Copied to clipboard!';
-        element.style.backgroundColor = "lightGreen";
-        setTimeout(function () {
-            element.innerHTML = last;
-            element.style.backgroundColor = lastColor;
-        }.bind(this), 2000);
-    }
-}
-
 function getConfigURL() {
     var buildname = document.getElementById("title").textContent;
 
@@ -299,7 +261,6 @@ function getConfigURL() {
     //console.log(configDeserialized);
 
     let here = new URL(window.location.href);
-    console.log("Config Bytesize: " + byteSize(base64));
     here.searchParams.set('Build', buildname);
     here.searchParams.set('Config', base64);
     return here.href;
@@ -365,6 +326,29 @@ function toggleLeftie(element) {
     }
 }
 
+let lastConfigURL = "";
+function updateWithBuildInfo()
+{
+    var newConfigURL = getConfigURL();
+    if(lastConfigURL == newConfigURL)
+        {
+            return;
+        }
+    lastConfigURL = newConfigURL;
+    
+    //Update Title with Buildname
+    const nextURL = newConfigURL;
+    const nextTitle = document.getElementById("title").textContent;
+    document.title = nextTitle;
+    const nextState = { additionalInformation: 'URL updated with build-info!' };
+    console.log("URL updated!");
+    
+    // This will create a new entry in the browser's history, without reloading
+    window.history.pushState(nextState, nextTitle, nextURL);
+    
+    //$('meta[name="description"]').attr("content", newDescription);
+}
+
 
 function updateTitleWithBuildName()
 {
@@ -387,8 +371,6 @@ $(document).mousemove( function(e) {
     let tooltip = document.getElementById("tooltip");
     tooltip.style.top = mouseY + 15 + "px";
     tooltip.style.left = mouseX + 30 + "px";
-    
-    updateTitleWithBuildName();
 });  
 
 function showTooltip(element) {

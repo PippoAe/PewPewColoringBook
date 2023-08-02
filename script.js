@@ -31,6 +31,7 @@ window.onload = function () {
             loadDefaults();
         }
         console.log("Build '" + urlBuild + "' loaded!")
+        updateTitleWithBuildName();
         window.history.pushState({}, document.title, "");
 
     } else {
@@ -364,6 +365,17 @@ function toggleLeftie(element) {
     }
 }
 
+
+function updateTitleWithBuildName()
+{
+    //Update Title with Buildname
+    var buildName = document.getElementById("title").textContent;
+    if (document.title != buildName) {
+        document.title = buildName;
+    }
+    //$('meta[name="description"]').attr("content", newDescription);
+}
+
 let mouseX;
 let mouseY;
 $(document).mousemove( function(e) {
@@ -375,14 +387,14 @@ $(document).mousemove( function(e) {
     let tooltip = document.getElementById("tooltip");
     tooltip.style.top = mouseY + 15 + "px";
     tooltip.style.left = mouseX + 30 + "px";
+    
+    updateTitleWithBuildName();
 });  
 
 function showTooltip(element) {
   let tooltip = document.getElementById("tooltip");
   tooltip.innerHTML = element.id.replace("_ColorPane","");
   tooltip.style.display = "block";
-
-
 }
 
 function hideTooltip() {

@@ -3,11 +3,17 @@ $(document).ready(function () {
     //document.getElementById("fidlockToggle").checked = "1";
     //document.getElementById("heatsinkToggle").checked = "1"; 
     //Prevent linebreak in title
-    document.getElementById('title').addEventListener('keydown', (evt) => {
-        if (evt.keyCode === 13) {
-            evt.preventDefault();
-        }
-    });
+    try{
+            document.getElementById('title').addEventListener('keydown', (evt) => {
+            if (evt.keyCode === 13) {
+                evt.preventDefault();
+            }
+        });
+    }
+    catch{
+        
+    }
+
     
     
     //Setup reoccuring update routine (2 second interval)
@@ -37,7 +43,7 @@ window.onload = function () {
     const urlParams = new URLSearchParams(queryString);
     var urlBuild = urlParams.get('Build');    
     var urlConfig = urlParams.get('Config');
-
+    
     if (urlBuild && urlConfig) {
         console.log("Trying to load build from URL!");
         try {
@@ -55,6 +61,20 @@ window.onload = function () {
     } else {
         loadDefaults();
     }
+    
+    var urlImage = urlParams.get('img'); 
+    if(urlImage)
+    {
+            console.log("return image only");
+            //console.log(document.getElementById('PewPewSVG'));
+            document.open();
+            //document.write(document.getElementById('PewPewSVG'));
+            document.write("This will not work... :(");
+            document.close();
+            
+            return;
+    }
+    
     
     var colorPanes = document.getElementsByClassName('ColorPane');
     for (var i = 0; i < colorPanes.length; i++) {

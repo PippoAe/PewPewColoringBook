@@ -35,12 +35,13 @@ window.onload = function () {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    var urlBuild = urlParams.get('Build');
+    var urlBuild = urlParams.get('Build');    
     var urlConfig = urlParams.get('Config');
 
     if (urlBuild && urlConfig) {
         console.log("Trying to load build from URL!");
         try {
+            document.title = urlBuild;
             var configDeserialized = JSON.parse(atob(urlConfig));
             //console.log(configDeserialized);
             loadConfig(urlBuild, configDeserialized);

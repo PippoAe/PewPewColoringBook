@@ -120,6 +120,19 @@ function colorPaneClicked(element) {
         console.log("Heatsink can not be colored!");
         return;
     }
+    //if (element.id == "Joystick_ColorPane") {
+    //    console.log("Not yet implemented!");
+    //    return;
+    //}
+    //if (element.id == "LeftScrew_ColorPane") {
+    //    console.log("Not yet implemented!");
+    //    return;
+    //}
+    //if (element.id == "RightScrew_ColorPane") {
+    //    console.log("Not yet implemented!");
+    //    return;
+    //}
+    
     console.log(element.id + " clicked! Coloring it in " + selectedCol.value);
     element.style.coloredBy = selectedCol;
     element.style.fill = selectedCol.value;
@@ -158,7 +171,6 @@ function loadDefaults() {
     parts.push([0, "ScrewCover_ColorPane"]);
     parts.push([0, "Grip_ColorPane"]);
     parts.push([0, "TriggerGuard_ColorPane"]);
-    parts.push([0, "Joystick_ColorPane"]);
 
     parts.push([1, "Upper_ColorPane"]);
     parts.push([1, "Trigger_ColorPane"]);
@@ -168,8 +180,11 @@ function loadDefaults() {
     parts.push([2, "Fidlock_ColorPane"]);
     parts.push([2, "BatteryDoor_ColorPane"]);
     parts.push([2, "Middle_ColorPane"]);
-
-
+    
+    parts.push([0, "Joystick_ColorPane"]);
+    parts.push([0, "LeftScrew_ColorPane"]);
+    parts.push([0, "RightScrew_ColorPane"]);
+    
     var extras = [];
     extras.push(1); //fidlock
     extras.push(1); //heatsink
@@ -245,6 +260,7 @@ function getConfigURL() {
         colors[i] = [swatch.value.replace("#",""), swatchtext.value];
     }
 
+
     var parts = [];
     var colorPanes = document.getElementsByClassName("ColorPane");
     //colorPanes.sort();
@@ -254,9 +270,19 @@ function getConfigURL() {
         var colorPane = colorPanes[i];
         /*console.log(colorPane);
         console.log(colorPane.dataset.partindex);*/
-        if (colorPane.id == "Heatsink_ColorPane") {
+        if (colorPane.id == "Heatsink_ColorPane") { //This one is not colored
             continue;
         }
+        if (colorPane.id == "LeftScrew_ColorPane") { //This 
+            continue;
+        }
+        if (colorPane.id == "RightScrew_ColorPane") {
+            continue;
+        }
+        //if (colorPane.id == "Joystick_ColorPane") {
+        //    continue;
+        //}
+        
         parts[i] = [colorPane.style.coloredBy.id, colorPane.id.replace("_ColorPane","")];
         //parts[i] = [colorPane.style.coloredBy.id, colorPane.id];
     }
@@ -278,7 +304,7 @@ function getConfigURL() {
     let config = [];
     config.push(colors, parts, extras);
     var configJSONString = JSON.stringify(config);
-    //console.log(JSON.stringify(config));
+    console.log(JSON.stringify(config));
     
     var base64 = btoa(configJSONString);
     //var configDeserialized = JSON.parse(atob(base64));

@@ -201,7 +201,7 @@ function loadConfig(buildname, config) {
     var colors = config[0];
     var parts = config[1];
     var extras = config[2];
-
+    
     //Load config
     document.getElementById("title").textContent = buildname;
 
@@ -273,17 +273,25 @@ function getConfigURL() {
         if (colorPane.id == "Heatsink_ColorPane") { //This one is not colored
             continue;
         }
-        if (colorPane.id == "LeftScrew_ColorPane") { //This 
-            continue;
-        }
-        if (colorPane.id == "RightScrew_ColorPane") {
-            continue;
-        }
+        //if (colorPane.id == "LeftScrew_ColorPane") {  
+        //    continue;
+        //}
+        //if (colorPane.id == "RightScrew_ColorPane") {
+        //    continue;
+        //}
         //if (colorPane.id == "Joystick_ColorPane") {
         //    continue;
         //}
         
-        parts[i] = [colorPane.style.coloredBy.id, colorPane.id.replace("_ColorPane","")];
+        try
+            {
+                parts[i] = [colorPane.style.coloredBy.id, colorPane.id.replace("_ColorPane","")];
+            }
+        catch (err) {
+            {
+                parts[i] = [0, colorPane.id.replace("_ColorPane","")];
+            }
+    }
         //parts[i] = [colorPane.style.coloredBy.id, colorPane.id];
     }
 

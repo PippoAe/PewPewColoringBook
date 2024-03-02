@@ -27,8 +27,6 @@ $(document).ready(function () {
             }
         setTimeout(update, 2000);
     }
-    update();
-
 });
 
 $(window).bind("popstate", function() {

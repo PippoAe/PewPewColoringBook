@@ -14,19 +14,18 @@ $(document).ready(function () {
         
     }
 
-    
-    
     //Setup reoccuring update routine (2 second interval)
     function update() {
         try{
+            console.log("Trying to load build from URL!");
             updateWithBuildInfo(); 
         }        
         catch
             {
              //This crashes on first call (no colors loaded yet)
             }
-        setTimeout(update, 2000);
     }
+    setTimeout(update, 2000);
 });
 
 $(window).bind("popstate", function() {
